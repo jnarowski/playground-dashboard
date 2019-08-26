@@ -4,7 +4,7 @@ import authenticationService from '~/services/authenticationService'
 import qs from 'qs'
 
 const config = {
-  baseUrl: 'http://localhost:5000',
+  baseUrl: process.env.VUE_APP_API_URL,
 }
 
 const getApi = (options = {}) => {
