@@ -39,4 +39,7 @@ body {
 html {
   height: 100%;
 }
+.no-top-border {
+  border-top-width: 0;
+}
 </style>
