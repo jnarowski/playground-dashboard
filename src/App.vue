@@ -1,25 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>
-    </div>
+    <the-header :isLoggedIn="isLoggedIn" @logout="logout"></the-header>
     <router-view />
   </div>
 </template>
+<script>
+import TheHeader from '@/components/TheHeader'
+
+export default {
+  components: {
+    TheHeader,
+  },
+  computed: {
+    isLoggedIn: function() {
+      return this.$store.getters['authentication/isLoggedIn']
+    },
+  },
+  methods: {
+    logout: function() {
+      this.$store.dispatch('authentication/logout').then(() => {
+        this.$router.push('/login')
+      })
+    },
+  },
+}
+</script>
 
 <style>
-html {
-  background-color: #1c2532;
-  color: #fff;
-  text-align: center;
-  word-spacing: 1px;
-  font-size: 16px;
-  font-family: Heebo, Helvetica Neue, Source Sans Pro, Helvetica, Arial,
-    sans-serif;
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+  color: #2c3e50;
+}
+body {
+  background-color: #12263f;
+}
+html {
+  height: 100%;
 }
 </style>
